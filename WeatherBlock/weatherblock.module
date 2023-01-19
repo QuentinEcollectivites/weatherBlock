@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for weather module.
+ *
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function weather_theme($existing, $type, $theme, $path) {
+  return [
+    'weather-block' => [
+        'variables' => [
+          'temperature' => NULL, 
+          'code' => NULL,
+          'vent' => NULL, 
+          'codeIcone' => NULL,
+          'descriptionWeather' => NULL, 
+          'date' => NULL
+          ],
+    ]
+  ];
+}
