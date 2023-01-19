@@ -1,17 +1,17 @@
 <?php
 
-namespace Drupal\lwblocks\Plugin\Block;
+namespace Drupal\weatherblock\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 
 
 /**
- * Provides an contact block for sidebar.
+ * Provides an weather block for sidebar.
  *
  * @Block(
  *   id = "weatherblock",
- *   admin_label = @Translation("Contact Block"),
- *   category = @Translation("lwblocks")
+ *   admin_label = @Translation("weather Block"),
+ *   category = @Translation("weatherblock")
  * )
  */
 
@@ -42,6 +42,8 @@ class WeatherBlock extends BlockBase {
         $curlmeteo = curl_init($meteourl);
         curl_setopt($curlmeteo, CURLOPT_URL, $meteourl);
         curl_setopt($curlmeteo, CURLOPT_RETURNTRANSFER, true);
+
+       
 
         $respmeteo = curl_exec($curlmeteo);
         // $respmeteo = json_decode($respmeteo, true);

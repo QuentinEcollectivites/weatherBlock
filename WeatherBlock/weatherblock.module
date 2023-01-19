@@ -9,7 +9,7 @@
 /**
  * Implements hook_theme().
  */
-function weather_theme($existing, $type, $theme, $path) {
+function weatherblock_theme($existing, $type, $theme, $path) {
   return [
     'weather-block' => [
         'variables' => [
