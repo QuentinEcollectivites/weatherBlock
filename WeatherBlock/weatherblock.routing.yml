@@ -1,7 +1,0 @@
-weatherblock.settings_form:
-  path: '/admin/config/system/weatherblock'
-  defaults:
-    _title: 'weatherblock settings'
-    _form: 'Drupal\weatherblock\Form\SettingsForm'
-  requirements:
-    _permission: 'administer weatherblock configuration'

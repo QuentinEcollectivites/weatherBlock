@@ -1,6 +1,0 @@
-name: weatherblock
-type: module
-description: Custom Weather Block for a site
-package: weather
-core: 8.x
-core_version_requirement: ^8 || ^9
