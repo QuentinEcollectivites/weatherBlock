@@ -1,7 +1,7 @@
 <div class="container py-5 h-100" >
   <div class="row d-flex justify-content-center align-items-center h-100">
-    <div class="col-md-8 col-lg-6 col-xl-4">
-      <a class="card" style="color: #4B515D; border-radius: 35px; height: inherit!important" href="/meteo">
+    <div class="col-lg-6">
+      <div class="card" style="color: #4B515D; border-radius: 35px; height: inherit!important" href="/meteo">
         <div class="card-body p-4">
           <div class="d-flex center">  
             <h6>{{ date }}</h6>
@@ -20,8 +20,10 @@
             </div>
           </div>
         </div>
-      </a>
+      </div>
     </div>
+    <div class="row my-5">
+      {{ arrayweather | raw }}
   </div>
 
 </div>

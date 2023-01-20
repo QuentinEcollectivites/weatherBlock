@@ -20,6 +20,25 @@ function weatherblock_theme($existing, $type, $theme, $path) {
           'descriptionWeather' => NULL, 
           'date' => NULL
           ],
-    ]
+    ],
+    'weather-block-mini' => [
+        'variables' => [
+          'codeIcone' => NULL,
+          'descriptionWeather' => NULL, 
+          'temperature' => NULL
+          ],
+    ],
+    'weather-block-weekly' => [
+        'variables' => [
+          'temperature' => NULL, 
+          'code' => NULL,
+          'vent' => NULL, 
+          'codeIcone' => NULL,
+          'descriptionWeather' => NULL,
+          'arrayweather' => NULL, 
+          'date' => NULL
+          ],
+    ],
+    
   ];
 }

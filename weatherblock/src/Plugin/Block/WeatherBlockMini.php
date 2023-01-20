@@ -9,13 +9,13 @@ use Drupal\Core\Block\BlockBase;
  * Provides an weather block for sidebar.
  *
  * @Block(
- *   id = "weatherblock",
- *   admin_label = @Translation("weather Block"),
- *   category = @Translation("weatherblock")
+ *   id = "weatherblockmini",
+ *   admin_label = @Translation("weather Block Mini"),
+ *   category = @Translation("weatherblockmini")
  * )
  */
 
-class WeatherBlock extends BlockBase {
+class WeatherBlockMini extends BlockBase {
     /**
      * {@inheritdoc}
      */
@@ -34,8 +34,8 @@ class WeatherBlock extends BlockBase {
         $dechet = array("[", "]");
         $resp = str_replace($dechet, "", $resp );
         $resp = json_decode($resp, true);
-         $lat = explode(",", $resp["field_geolocalisation"])[0];
-         $long = explode(",", $resp["field_geolocalisation"])[1];
+        $lat = explode(",", $resp["field_geolocalisation"])[0];
+        $long = explode(",", $resp["field_geolocalisation"])[1];
         
         $meteourl = "https://api.open-meteo.com/v1/meteofrance?current_weather=true&latitude=".$lat."&longitude=".$long;
         $meteourl = str_replace(" ", "", $meteourl );
@@ -64,18 +64,18 @@ class WeatherBlock extends BlockBase {
         switch ($weathercode) {
             case 0:
                 $codeIconWeather = "fa-sun";
-                $descriptionWeather = "Il va faire beau aujourd'hui !";
+                $descriptionWeather = "Soleil";
                 break;
             case 1:
             case 2:
             case 3:
                 $codeIconWeather = "fa-cloud-sun";
-                $descriptionWeather = "Le ciel va être nuageux aujourd'hui !";
+                $descriptionWeather = "Nuages";
                 break;
             case 45:
             case 48:
                 $codeIconWeather = "fa-wind";
-                $descriptionWeather = "Il va venter aujourd'hui !";
+                $descriptionWeather = "Vent";
                 break;
             case 51: 
             case 53: 
@@ -83,7 +83,7 @@ class WeatherBlock extends BlockBase {
             case 56: 
             case 57:
                 $codeIconWeather = "fa-smog";
-                $descriptionWeather = "Il y'aura du brouillard aujourd'hui !";
+                $descriptionWeather = "Brouillard";
                 break;
             case 61:
                 case 63:
@@ -91,46 +91,43 @@ class WeatherBlock extends BlockBase {
                 case 66:
                 case 67:
                 $codeIconWeather = "fa-cloud-rain";
-                $descriptionWeather = "Il va pleuvoir aujourd'hui !";
+                $descriptionWeather = "Pluie";
                 break;
             case 71:
                 case 73:
                 case 75:
                 case 77:
                 $codeIconWeather = "fa-cloud-meatball";
-                $descriptionWeather = "Il va neiger aujourd'hui !";
+                $descriptionWeather = "Neige";
                 break;
             case 80:
             case 81:
             case 82:
                 $codeIconWeather = "fa-cloud-showers-heavy";
-                $descriptionWeather = "Attention beaucoup de pluie prévu aujourd'hui !";
+                $descriptionWeather = "Averses";
                 break;
             case 85:
             case 86:
                 $codeIconWeather = "fa-snowflake";
-                $descriptionWeather = "Attention beaucoup de neige prévu aujourd'hui !";
+                $descriptionWeather = "Neige";
 
                 break;
             case 95:
                 case 96:
                 case 99:
                 $codeIconWeather = "fa-cloud-bolt";
-                $descriptionWeather = "Attention de l'orage est prévu aujourd'hui !";
+                $descriptionWeather = "Orage";
                 break;
         }
         
         
 
         return [
-            '#theme' => 'weather-block',
+            '#theme' => 'weather-block-mini',
             
             '#temperature' => $temperature,
-            '#code' => $weathercode,
-            '#vent' => $windspeed,
             '#codeIcone' => $codeIconWeather,
-            '#descriptionWeather' => $descriptionWeather,
-            '#date' => $time
+            '#descriptionWeather' => $descriptionWeather
         ];
 
     }
