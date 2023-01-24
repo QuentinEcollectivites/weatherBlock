@@ -34,15 +34,16 @@ class WeatherBlockWeekly extends BlockBase {
         $dechet = array("[", "]");
         $resp = str_replace($dechet, "", $resp );
         $resp = json_decode($resp, true);
-         $lat = explode(",", $resp["field_geolocalisation"])[0];
-         $long = explode(",", $resp["field_geolocalisation"])[1];
+        $titleCity = $resp["title"];
+        $lat = explode(",", $resp["field_geolocalisation"])[0];
+        $long = explode(",", $resp["field_geolocalisation"])[1];
         
         $meteourl = "https://api.open-meteo.com/v1/meteofrance?current_weather=true&latitude=".$lat."&longitude=".$long."&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto";
         $meteourl = str_replace(" ", "", $meteourl );
         $curlmeteo = curl_init($meteourl);
         curl_setopt($curlmeteo, CURLOPT_URL, $meteourl);
         curl_setopt($curlmeteo, CURLOPT_RETURNTRANSFER, true);
-
+        // var_dump($meteourl);
         
        
 
@@ -60,6 +61,7 @@ class WeatherBlockWeekly extends BlockBase {
         $weathercode = $weather["weathercode"];
         if( !$weathercode ){
             $weathercode = "fa-circle-info";
+            
         }
         $windspeed = $weather["windspeed"];
         $time = $weather["time"];
@@ -74,6 +76,7 @@ class WeatherBlockWeekly extends BlockBase {
         for ($i = 0; $i < count($respmeteo["daily"]["time"]); $i++) {
             $dailyDate = date(" d/m ", strtotime($allWeekTime[$i]));
             $dailyWeatherCode = $allWeekWeatherCode[$i];
+            
             $dailyTempMin = $allWeektemperatureMin[$i];
             if( !$dailyTempMin ){
                 $dailyTempMin = "Aucune donnée disponible.";
@@ -148,15 +151,16 @@ class WeatherBlockWeekly extends BlockBase {
         } 
         $HtmlWeather = '';
         foreach($arrayWeather as $temp){
-            $HtmlWeather .= '<div class="col d-flex flex-column align-items-center">
-            <h5 class="row row1">T° Maximum : '.$temp[4].' °C</h5>
+            $HtmlWeather .= '<a class="col d-flex card flex-column align-items-center justify-content-center" href="https://www.meteorama.fr/meteo-'.$titleCity.'.html">
+            <h5>'.$temp[0].'</h5>
+            <h6>T° Min/Max : '.$temp[3].'/'.$temp[4].' °C</h6>
             <div style="width: 100px; height: 100px;">
                 <i class="fas '.$temp[1].' fa-fw" style="color: var(--primary-color); width: 100px; height: 100px;"></i>
             </div>
-            <h3 class="row row3">'.$temp[2].'</h3>
-            <h5 class="row row4">T° Minimum : '.$temp[3].' °C</h5>
-            <h6 class="row row5">'.$temp[0].'</h6>
-          </div>';
+            <h3>'.$temp[2].'</h3>
+            
+            
+          </a>';
         }
    
 
@@ -169,6 +173,7 @@ class WeatherBlockWeekly extends BlockBase {
             '#codeIcone' => $codeIconWeather,
             '#descriptionWeather' => $descriptionWeather,
             '#date' => $time,
+            '#city' => $titleCity,
             '#arrayweather' => $HtmlWeather
         ];
 
