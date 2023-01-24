@@ -151,7 +151,7 @@ class WeatherBlockWeekly extends BlockBase {
         } 
         $HtmlWeather = '';
         foreach($arrayWeather as $temp){
-            $HtmlWeather .= '<a class="col d-flex card flex-column align-items-center justify-content-center" href="https://www.meteorama.fr/meteo-'.$titleCity.'.html">
+            $HtmlWeather .= '<div class="col d-flex card flex-column align-items-center justify-content-center">
             <h5>'.$temp[0].'</h5>
             <h6>T° Min/Max : '.$temp[3].'/'.$temp[4].' °C</h6>
             <div style="width: 100px; height: 100px;">
@@ -160,7 +160,7 @@ class WeatherBlockWeekly extends BlockBase {
             <h3>'.$temp[2].'</h3>
             
             
-          </a>';
+          </div>';
         }
    
 

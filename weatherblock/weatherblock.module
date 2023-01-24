@@ -36,6 +36,7 @@ function weatherblock_theme($existing, $type, $theme, $path) {
           'codeIcone' => NULL,
           'descriptionWeather' => NULL,
           'arrayweather' => NULL, 
+          'city' => NULL,
           'date' => NULL
           ],
     ],
